@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generator</title>
+    <style>
+        body,html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.container{
+    background-color: rgb(77, 37, 45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* color: black; */
+    
+    
+}
+.box{
+    background-color: rgb(233, 130, 225);
+    text-align: center;
+    /* padding: 20px; */
+    border-radius: 20px;
+    padding: 100px 50px;
+    width: 500px;
+    border: 5px solid black;
+    align-items: center;
+    
+    /* flex-direction: center; */
+}
+
+textarea{
+    height: 400px;
+    width: 400px;
+border-radius: 5px;
+border: 5px solid black;
+flex-direction: center;
+}
+button{
+    background-color:slateblue;
+    height: 50px;
+    width: 200px;
+    border: 2px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover{
+    transform:scale(1.05);
+    background-color: white;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>VOICE TO TEXT</h1>
+            <textarea name="text" id="textoutput" placeholder="Voice to Text"></textarea><br><br>
+            <button onclick="startRecognition()"> Start to Recognize</button>
+        </div>
+    </div>
+    <script>
+        function startRecognition(){
+            var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.onresult=function(event){
+                document.getElementById('textoutput').value=event.results[0][0].transcript;
+            };
+            recognition.start();
+        }
+    </script>
+    
+</body>
+</html>
